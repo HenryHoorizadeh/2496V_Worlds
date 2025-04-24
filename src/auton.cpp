@@ -1237,14 +1237,43 @@ void autonomous() {
     LadyBrown.move(-127);
     driveStraight2(250);
     delay(100);
-    LBMacro = 4;
+   // LBMacro = 4;
+    LadyBrown.move(0);
     driveClamp(-1600, 150, 60);//1550
+    LadyBrown.move(127);
     HOOKS.move(-127);
-    driveTurn2(100);
-    driveStraight2(500);
-    driveTurn2(-30);
+    driveTurn2(-160);
+    stallProtection = true;
+    driveStraightC(150); //150
+    LadyBrown.move(0);
+    driveArcRF(41, 700, 2500, 60);
+    driveStraight2(325, 50);
+    // driveStraightC(-200);
+    // driveArcRF(-13, 700, 2500); 
+    // driveStraight2(-50);
+    driveStraight2(-200);
+    driveTurn2(-25);
+    driveStraight2(400, 75); //1300 //45
+    
+    driveTurn2(30);
     intake.set_value(true);
-    driveStraight2(2000);
+    driveStraight2(2100, 90);
+    intake.set_value(false);
+    delay(250);
+    mogo.set_value(false);
+    stallProtection = false;
+    HOOKS.move(0);
+    driveTurn2(-70);
+    driveClamp(-1800, 150, 70);
+    HOOKS.move(-127);
+    driveTurn2(10);
+    stallProtection = true;
+    driveStraight2(1000);
+    driveTurn2(-150);
+    LadyBrown.move(-80);
+    driveStraight2(2500, 60);
+
+    
 
 
     //old robot code
