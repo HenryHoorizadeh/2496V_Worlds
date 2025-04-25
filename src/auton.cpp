@@ -1257,21 +1257,21 @@ void autonomous() {
     
     driveTurn2(30);
     intake.set_value(true);
-    driveStraight2(2100, 90);
+    driveStraight2(2000, 70);
     intake.set_value(false);
     delay(250);
     mogo.set_value(false);
     stallProtection = false;
     HOOKS.move(0);
     driveTurn2(-70);
-    driveClamp(-1800, 150, 70);
+    driveClamp(-1900, 150, 60);
     HOOKS.move(-127);
     driveTurn2(10);
     stallProtection = true;
     driveStraight2(1000);
     driveTurn2(-150);
-    LadyBrown.move(-80);
-    driveStraight2(2500, 60);
+    LBMacro = 5;
+    driveStraight2(2000);
 
     
 
