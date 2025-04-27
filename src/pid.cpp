@@ -883,7 +883,7 @@ void driveClamp(int target, int clampDistance, int speed) {
     setConstants(STRAIGHT_KP, STRAIGHT_KI, STRAIGHT_KD);
     resetEncoders();
    
-
+    timeout = (1.0/(100.0-double(speed)));
     while(true) {
 
         if(abs(target - encoderAvg)<25){
@@ -989,6 +989,7 @@ void driveClampD(int target, int clampDistance, int intakeDistance, int speed) {
     double heading_error = 0;
     time2 = 0;
 
+    timeout = (1.0/(100.0-double(speed)));
 
     if(trueTarget > 180){
         trueTarget = trueTarget - 360;
@@ -1103,7 +1104,6 @@ void driveStraight2(int target, int speed) {
     x = double(abs(target));
     timeout = ( 0.00000000000012321 * pow(x,5)) + (-0.000000000953264 * pow(x, 4)) + (0.00000271528 * pow(x, 3)) + (-0.00339918 * pow(x, 2)) + (2.12469 * x) + 409.43588; //Tune with Desmos
 
-    bool over = false;
     double voltage;
     double encoderAvg;
     int count = 0;
@@ -1123,8 +1123,7 @@ void driveStraight2(int target, int speed) {
     }
 
 
-
-    timeout = timeout * (2.0 - double(speed)/100.0);
+    timeout = (1.0/(100.0-double(speed)));
     
     resetEncoders();
    
@@ -1239,7 +1238,7 @@ void driveStraightR(int target, int speed) {
         setConstants(STRAIGHT_KP, STRAIGHT_KI, STRAIGHT_KD);
     }
 
-    timeout = timeout * (2.0 - double(speed)/100.0);
+    timeout = (1.0/(100.0-double(speed)));
     
     resetEncoders();
    
@@ -1372,6 +1371,8 @@ void driveStraightC(int target) {
 
     setConstants(STRAIGHT_KP, STRAIGHT_KI, STRAIGHT_KD);
     resetEncoders();
+
+    timeout = (1.0/(100.0-double(speed)));
 
     while(true) {
         encoderAvg = (LF.get_position() + RF.get_position()) / 2;
