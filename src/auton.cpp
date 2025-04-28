@@ -601,38 +601,81 @@ void autonomous() {
   LadyBrown.move(-127);
   driveStraight2(250);
   delay(100);
-  LBMacro = 4;
-  driveClamp(-1600, 150, 60);//1550
+ // LBMacro = 4;
+  LadyBrown.move(0);
+  driveClamp(-1625, 150, 60);//1550
+  LadyBrown.move(127);
   HOOKS.move(-127);
   driveTurn2(160);
   stallProtection = true;
-  driveStraightC(165); //275
-  driveArcLF(41, 700, 2500, 50);
-  driveStraight2(550);
-  driveStraight2(-700);
-  driveArcLF(130, 100, 2500);
-  driveStraight2(50);
-  driveStraight2(-100);
-  driveTurn2(40);
-
-  stallProtection = false;
-  HOOKS.move(127);
+  driveStraightC(50); //150
+  LadyBrown.move(0);
+  driveArcLF(41, 700, 2500, 60);
+  driveStraight2(375, 50);
+  // driveStraightC(-200);
+  // driveArcRF(-13, 700, 2500); 
+  // driveStraight2(-50);
+  driveStraight2(-200);
+  driveTurn2(25);
+  driveStraight2(375, 75); //1300 //45
   
+  driveTurn2(-29);
   intake.set_value(true);
-  driveStraight2(2400);
+  driveStraight2(2500);
   intake.set_value(false);
-  HOOKS.move(-127);
-  driveStraight2(-500);
+  delay(250);
+  mogo.set_value(false);
   stallProtection = false;
-  driveTurn2(-62);
-  intake.set_value(true);
-  driveStraight2(1700, 80);
-  intake.set_value(false);
-  delay(400);
-  driveTurn2(-140);
-  LBMacro = 0;
-  driveStraight2(1200);
-  LadyBrown.move(-127);
+  HOOKS.move(0);
+  driveTurn2(50);//70
+  driveClamp(-1500, 150, 60);
+  HOOKS.move(-127);
+  driveTurn2(-48);
+  stallProtection = true;
+  driveStraight2(1000);
+  driveTurn2(120);
+  LBMacro = 6;
+  driveStraight2(2000, 50);
+  //old red ring
+  // mogoToggle = true;
+  // color = 1;
+  // LadyBrown.move(-127);
+  // driveStraight2(250);
+  // delay(100);
+  // LBMacro = 4;
+  // driveClamp(-1600, 150, 60);//1550
+  // HOOKS.move(-127);
+  // driveTurn2(160);
+  // stallProtection = true;
+  // driveStraightC(165); //275
+  // driveArcLF(41, 700, 2500, 50);
+  // driveStraight2(550);
+  // driveStraight2(-700);
+  // driveArcLF(130, 100, 2500);
+  // driveStraight2(50);
+  // driveStraight2(-100);
+  // driveTurn2(40);
+
+  // stallProtection = false;
+  // HOOKS.move(127);
+  
+  // intake.set_value(true);
+  // driveStraight2(2400);
+  // intake.set_value(false);
+  // HOOKS.move(-127);
+  // driveStraight2(-500);
+  // stallProtection = false;
+  // driveTurn2(-62);
+  // intake.set_value(true);
+  // driveStraight2(1700, 80);
+  // intake.set_value(false);
+  // delay(400);
+  // driveTurn2(-140);
+  // LBMacro = 0;
+  // driveStraight2(1200);
+  // LadyBrown.move(-127);
+
+// end old red ring
   // LadyBrown.move(-127);
 
 
