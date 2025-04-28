@@ -758,6 +758,7 @@ void ColorSort(){
         }
 }
 }
+
 */
 
 
@@ -883,7 +884,7 @@ void driveClamp(int target, int clampDistance, int speed) {
     setConstants(STRAIGHT_KP, STRAIGHT_KI, STRAIGHT_KD);
     resetEncoders();
    
-    timeout = (1.0/(100.0-double(speed)));
+    timeout = timeout*(0.375/((100.0-double(speed))/100.0));
     while(true) {
 
         if(abs(target - encoderAvg)<25){
@@ -962,7 +963,7 @@ void driveClamp(int target, int clampDistance, int speed) {
         } else if (time2 % 100 == 0 && time2 % 150 != 0){
             con.print(1, 0, "IMU: %f           ", float(imu.get_heading()));
         } else if (time2 % 150 == 0){
-            con.print(2, 0, "Time: %f        ", float(time2));
+            con.print(2, 0, "Time: %f        ", float(timeout));
         } 
 
         delay(10);
@@ -989,7 +990,7 @@ void driveClampD(int target, int clampDistance, int intakeDistance, int speed) {
     double heading_error = 0;
     time2 = 0;
 
-    timeout = (1.0/(100.0-double(speed)));
+    timeout = timeout*(1.0/((100.0-double(speed))/100.0));
 
     if(trueTarget > 180){
         trueTarget = trueTarget - 360;
@@ -1123,7 +1124,7 @@ void driveStraight2(int target, int speed) {
     }
 
 
-    timeout = (1.0/(100.0-double(speed)));
+    timeout = timeout*(1.0/((100.0-double(speed))/100.0));
     
     resetEncoders();
    
@@ -1238,7 +1239,7 @@ void driveStraightR(int target, int speed) {
         setConstants(STRAIGHT_KP, STRAIGHT_KI, STRAIGHT_KD);
     }
 
-    timeout = (1.0/(100.0-double(speed)));
+    timeout = timeout*(1.0/((100.0-double(speed))/100.0));
     
     resetEncoders();
    
@@ -1372,7 +1373,7 @@ void driveStraightC(int target) {
     setConstants(STRAIGHT_KP, STRAIGHT_KI, STRAIGHT_KD);
     resetEncoders();
 
-    timeout = (1.0/(100.0-double(speed)));
+    // timeout = timeout*(1.0/(100.0-double(speed)));
 
     while(true) {
         encoderAvg = (LF.get_position() + RF.get_position()) / 2;

@@ -1173,37 +1173,79 @@ void autonomous() {
     LadyBrown.move(-127);
     driveStraight2(250);
     delay(100);
-    LBMacro = 4;
-    driveClamp(-1600, 150, 60);//1550
+   // LBMacro = 4;
+    LadyBrown.move(0);
+    driveClamp(-1625, 150, 60);//1550
+    LadyBrown.move(127);
     HOOKS.move(-127);
     driveTurn2(160);
     stallProtection = true;
-    driveStraightC(150); //275
-    driveArcLF(41, 700, 2500, 50);
-    driveStraight2(325, 50);
-    driveStraightC(-200);
-    driveArcLF(-15, 700, 2500);
-    driveStraight2(-50);
-    driveTurn2(49);
-    driveStraight2(700);
-    driveTurn2(-42);
+    driveStraightC(50); //150
+    LadyBrown.move(0);
+    driveArcLF(41, 700, 2500, 60);
+    driveStraight2(375, 50);
+    // driveStraightC(-200);
+    // driveArcRF(-13, 700, 2500); 
+    // driveStraight2(-50);
+    driveStraight2(-200);
+    driveTurn2(25);
+    driveStraight2(375, 75); //1300 //45
+    
+    driveTurn2(-29);
     intake.set_value(true);
-    driveStraight2(1600);
+    driveStraight2(2500);
     intake.set_value(false);
-    delay(200);
-    driveStraight2(-300);
+    delay(250);
     mogo.set_value(false);
-    driveStraight2(100);
+    stallProtection = false;
     HOOKS.move(0);
-    driveTurn2(89);
-    driveClamp(-1700, 150, 60);
+    driveTurn2(50);//70
+    driveClamp(-1500, 150, 60);
     HOOKS.move(-127);
-    driveTurn2(-53);
-    driveStraight2(700);
-    driveTurn2(127);
-    LBMacro= 0;
-    LadyBrown.move(-127);
-    driveStraight2(2400);
+    driveTurn2(-48);
+    stallProtection = true;
+    driveStraight2(1000);
+    driveTurn2(120);
+    LBMacro = 6;
+    driveStraight2(2000, 50);
+
+    //old red safe solo
+    // mogoToggle = true;
+    // color = 1;
+    // LadyBrown.move(-127);
+    // driveStraight2(250);
+    // delay(100);
+    // LBMacro = 4;
+    // driveClamp(-1600, 150, 60);//1550
+    // HOOKS.move(-127);
+    // driveTurn2(160);
+    // stallProtection = true;
+    // driveStraightC(150); //275
+    // driveArcLF(41, 700, 2500, 50);
+    // driveStraight2(325, 50);
+    // driveStraightC(-200);
+    // driveArcLF(-15, 700, 2500);
+    // driveStraight2(-50);
+    // driveTurn2(49);
+    // driveStraight2(700);
+    // driveTurn2(-42);
+    // intake.set_value(true);
+    // driveStraight2(1600);
+    // intake.set_value(false);
+    // delay(200);
+    // driveStraight2(-300);
+    // mogo.set_value(false);
+    // driveStraight2(100);
+    // HOOKS.move(0);
+    // driveTurn2(89);
+    // driveClamp(-1700, 150, 60);
+    // HOOKS.move(-127);
+    // driveTurn2(-53);
+    // driveStraight2(700);
+    // driveTurn2(127);
+    // LBMacro= 0;
+    // LadyBrown.move(-127);
+    // driveStraight2(2400);
     
 
 

@@ -79,7 +79,7 @@ void disabled() {}
 
  
 
-int atn = 6;
+int atn = 5;
 int RingColor = 2;
 int color = 0;
 int pressed = 0;
