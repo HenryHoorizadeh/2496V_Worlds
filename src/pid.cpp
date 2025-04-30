@@ -1123,8 +1123,8 @@ void driveStraight2(int target, int speed) {
         setConstants(STRAIGHT_KP, STRAIGHT_KI, STRAIGHT_KD);
     }
 
-
-    timeout = timeout*(1.0/((100.0-double(speed))/100.0));
+    timeout = timeout * (2.0 - double(speed)/100.0);
+    //timeout = timeout*(0.35/((100.0-double(speed))/100.0));
     
     resetEncoders();
    

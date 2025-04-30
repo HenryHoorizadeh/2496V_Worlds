@@ -617,25 +617,32 @@ void autonomous() {
   // driveStraight2(-50);
   driveStraight2(-200);
   driveTurn2(25);
-  driveStraight2(375, 75); //1300 //45
+  driveStraight2(1650, 75); //1300 //45
   
-  driveTurn2(-29);
+  driveTurn2(70);
   intake.set_value(true);
-  driveStraight2(2500);
+  driveStraight2(800);
   intake.set_value(false);
-  delay(250);
-  mogo.set_value(false);
-  stallProtection = false;
-  HOOKS.move(0);
-  driveTurn2(50);//70
-  driveClamp(-1500, 150, 60);
-  HOOKS.move(-127);
-  driveTurn2(-48);
-  stallProtection = true;
-  driveStraight2(1000);
-  driveTurn2(120);
-  LBMacro = 6;
-  driveStraight2(2000, 50);
+  driveStraight2(-50);
+  for(int i = 0; i <= 800; i++){
+     ColorSort();
+     delay(10);
+    }
+    driveStraight2(50);
+
+  // delay(250);
+  // mogo.set_value(false);
+  // stallProtection = false;
+  // HOOKS.move(0);
+  // driveTurn2(50);//70
+  // driveClamp(-1500, 150, 60);
+  // HOOKS.move(-127);
+  // driveTurn2(-48);
+  // stallProtection = true;
+  // driveStraight2(1000);
+  // driveTurn2(120);
+  // LBMacro = 6;
+  // driveStraight2(2000, 50);
   //old red ring
   // mogoToggle = true;
   // color = 1;
@@ -1251,6 +1258,7 @@ void autonomous() {
     driveTurn2(120);
     LBMacro = 6;
     driveStraight2(2000, 50);
+
 
     //old red safe solo
     // mogoToggle = true;
