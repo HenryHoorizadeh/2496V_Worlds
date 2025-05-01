@@ -617,19 +617,35 @@ void autonomous() {
   // driveStraight2(-50);
   driveStraight2(-200);
   driveTurn2(25);
-  driveStraight2(1650, 75); //1300 //45
+  driveStraight2(1550, 75); //1300 //45
   
   driveTurn2(70);
   intake.set_value(true);
   driveStraight2(800);
   intake.set_value(false);
+  driveStraight2(-100);
+  // for(int i = 0; i <= 300; i+=10){
+  //    ColorSort();
+  //    delay(10);
+  //   }
+  driveStraight2(150);
   driveStraight2(-50);
-  for(int i = 0; i <= 800; i++){
+  driveStraight2(50);
+  driveStraight2(-600);
+  driveTurn2(-65);
+  intake.set_value(true);
+  driveStraight2(1450, 85);
+  intake.set_value(false);
+    for(int i = 0; i <= 9900; i+=10){
      ColorSort();
      delay(10);
     }
-    driveStraight2(50);
-
+  // driveStraight2(-350);
+  // driveStraight2(150);
+  // for(int i = 0; i <= 8800; i++){
+  //   ColorSort();
+  //   delay(10);
+  //  }
   // delay(250);
   // mogo.set_value(false);
   // stallProtection = false;

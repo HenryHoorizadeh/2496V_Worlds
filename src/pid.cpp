@@ -333,7 +333,7 @@ void ColorSort(){
             InitColor = true;
         }
 
-        if(InitColor && ColorCount < 600){
+        if(InitColor && ColorCount < 550){
             colorSorter.set_value(true);
             ColorCount += 10;
         } else {
@@ -372,7 +372,7 @@ void ColorSort(){
             InitColor = true;
         }
 
-        if(InitColor && ColorCount < 600){
+        if(InitColor && ColorCount < 550){
             colorSorter.set_value(true);
             ColorCount += 10;
         } else {
