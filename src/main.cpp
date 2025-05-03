@@ -79,7 +79,7 @@ void disabled() {}
 
  
 
-int atn = 1;
+int atn = 8;
 int RingColor = 2;
 int color = 0;
 int pressed = 0;
@@ -584,6 +584,7 @@ TEST.move(127);
 //hello
     //pid tester
     if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_UP)) {
+      intakeToggle = !intakeToggle;
       // driveTurn2(-135);
       // driveArcRF(90, 400, 2000);
       // driveStraightC(100);
@@ -669,7 +670,7 @@ TEST.move(127);
     odometry2();
 
     if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_RIGHT)){
-        intakeToggle = !intakeToggle;
+        doinkerToggle = !doinkerToggle;
     }
 
     if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_LEFT)){

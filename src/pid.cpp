@@ -300,7 +300,7 @@ void LadyBrownMacro(){
     setConstants2(0.04, 0, 0);
     if(LBMacro == 1){
        // setConstants2(0.04, 0, 100);
-        LadyBrown.move(-calcPIDlift(2800, LBPos, 0, 0, 1.0));
+        LadyBrown.move(-calcPIDlift(3600, LBPos, 0, 0, 1.0));
     } else if(LBMacro == 2){
         //setConstants2(0.05, 0, 500);
         LadyBrown.move(-calcPIDlift(4900, LBPos, 0, 0, 1.0)); //5200
