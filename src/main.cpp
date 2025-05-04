@@ -79,7 +79,7 @@ void disabled() {}
 
  
 
-int atn = 8;
+int atn = 2;
 int RingColor = 2;
 int color = 0;
 int pressed = 0;
@@ -232,6 +232,7 @@ TEST.move(127);
 
 
 	while (true) {
+
   colorSorter.set_value(false);
 
     // color = 1;

@@ -297,7 +297,7 @@ void LadyBrownMacro(){
     } else {
         //HOOKS.tare_position();
     }
-    setConstants2(0.04, 0, 0);
+    setConstants2(0.03, 0, 0);
     if(LBMacro == 1){
        // setConstants2(0.04, 0, 100);
         LadyBrown.move(-calcPIDlift(3600, LBPos, 0, 0, 1.0));
@@ -1215,6 +1215,129 @@ void driveStraight2(int target, int speed) {
     RB.brake();
 }
 
+
+void driveStraightI(int target, int speed, int dist) {
+    int timeout = 5000;
+    double x = 0;
+    x = double(abs(target));
+    timeout = ( 0.00000000000012321 * pow(x,5)) + (-0.000000000953264 * pow(x, 4)) + (0.00000271528 * pow(x, 3)) + (-0.00339918 * pow(x, 2)) + (2.12469 * x) + 409.43588; //Tune with Desmos
+
+    double voltage;
+    double encoderAvg;
+    int count = 0;
+    double heading_error = 0;
+    int cycle = 0; // Controller Display Cycle
+    time2 = 0;
+
+
+    if(trueTarget > 180){
+        trueTarget = trueTarget - 360;
+    }
+
+    if(mogoValues == true){
+        setConstants(STRAIGHT_KPM, STRAIGHT_KIM, STRAIGHT_KDM);
+    } else {
+        setConstants(STRAIGHT_KP, STRAIGHT_KI, STRAIGHT_KD);
+    }
+
+    timeout = timeout * (2.0 - double(speed)/100.0);
+    //timeout = timeout*(0.35/((100.0-double(speed))/100.0));
+    
+    resetEncoders();
+   
+
+    while(true) {
+
+    if(abs(error) < dist){
+        HOOKS.move(-127);
+    } else {
+        HOOKS.move(0);
+    }
+    if(abs(target - encoderAvg)<25){
+        setConstants(2.5, 0, 0);
+    } else {
+        setConstants(STRAIGHT_KP, STRAIGHT_KI, STRAIGHT_KD);
+    }
+  
+
+    encoderAvg = (LF.get_position() + RF.get_position()) / 2;
+    voltage = calcPID(target, encoderAvg, STRAIGHT_INTEGRAL_KI, STRAIGHT_MAX_INTEGRAL);
+
+
+    double position = imu.get_heading(); //this is where the units are set to be degrees
+
+    if (position > 180){
+        position = position - 360;
+    }
+
+    if((trueTarget < 0) && (position > 0)){
+        if((position - trueTarget) >= 180){
+            trueTarget = trueTarget + 360;
+            position = imu.get_heading();
+        } 
+    } else if ((trueTarget > 0) && (position < 0)){
+        if((trueTarget - position) >= 180){
+           position = imu.get_heading();
+        }
+    } 
+
+
+        // if(trueTarget > 180) {
+        //     trueTarget = (360 - trueTarget);
+        // }
+
+        // if(imu.get_heading() < 180) {
+        //     heading_error = trueTarget - imu.get_heading();
+        // }
+        // else {
+        //     heading_error = ((360 - imu.get_heading()) - trueTarget);
+        // }
+
+        // heading_error = heading_error * HEADING_CORRECTION_KP;
+
+        if(longValues){
+            setConstants(HEADING_KP2, HEADING_KI2, HEADING_KD2);
+        } else {
+            setConstants(HEADING_KP, HEADING_KI, HEADING_KD);
+        }
+
+        heading_error = calcPID2(trueTarget, position, HEADING_INTEGRAL_KI, HEADING_MAX_INTEGRAL);
+        
+
+        if(voltage > 127 * double(speed)/100.0){
+            voltage = 127 * double(speed)/100.0;
+        } else if (voltage < -127 * double(speed)/100.0){
+            voltage = -127 * double(speed)/100.0;
+        }
+
+        chasMove( (voltage + heading_error ), (voltage - heading_error));
+        if (abs(target - encoderAvg) <= 4) count++;
+        if (count >= 8 || time2 > timeout){
+            break;
+        } 
+
+
+        if (time2 % 50 == 0 && time2 % 100 != 0 && time2 % 150 != 0){
+            con.print(0, 0, "ERROR: %f           ", float(error));
+        } else if (time2 % 100 == 0 && time2 % 150 != 0){
+            con.print(1, 0, "true: %f           ", float(trueTarget));
+        } else if (time2 % 150 == 0){
+            con.print(2, 0, "Time: %f        ", float(time2));
+        } 
+
+        delay(10);
+        time2 += 10;
+        //hi
+    }
+    LF.brake();
+    LM.brake();
+    LB.brake();
+    RF.brake();
+    RM.brake();
+    RB.brake();
+}
+
+
 void driveStraightR(int target, int speed) {
     int timeout = 5000;
     double x = 0;
@@ -1577,7 +1700,16 @@ void driveTurn2(int target) { //target is inputted in autons
     //variKD =(-0.0000000042528 * pow(x,5)) + (0.00000209186 * pow(x, 4)) + (-0.000381218 * pow(x, 3)) + (0.0314888 * pow(x, 2)) + (-0.951821 * x) + 87.7549; // Use Desmos to tune
     variKD =(0.0000000033996 * pow(x,5)) + (-0.00000144663 * pow(x, 4)) + (0.000207591 * pow(x, 3)) + (-0.0111654 * pow(x, 2)) + (0.209467 * x) + 53.04069; // Use Desmos to tune
    //} 
-    timeout = (0.00000000392961 * pow(x,5)) + (0.0000057915 * pow(x, 4)) + (-0.00321553 * pow(x, 3)) + (0.502982 * pow(x, 2)) + (-22.36692 * x) + 766.53481; //866 // Use Desmos to tune
+    timeout = (0.00000000392961 * pow(x,5)) + (0.0000057915 * pow(x, 4)) + (-0.00321553 * pow(x, 3)) + (0.502982 * pow(x, 2)) + (-22.36692 * x) + 766.53481; //866 // Use Desmos to tune 
+    if(atn == 8){
+        timeout -= 300;
+    }
+    if(atn == 6 || atn == 5){
+        timeout -= 200;
+    }
+    if(atn == 1 || atn == 2){
+        timeout -= 350;
+    }
     // if(abs(target>=25)){
     // setConstants(TURN_KP, TURN_KI, variKD); 
     // } else if(mogoValues == false) {
