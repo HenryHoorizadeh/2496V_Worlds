@@ -122,19 +122,19 @@ void competition_initialize() {
         con.print(0, 0, "Aut 0: %s", autstr);
       }
       else if (atn == 1) {
-        autstr = " RED LEFT RING";
+        autstr = " RED RING";
         con.print(0, 0, "Aut 1: %s", autstr);
       }
       else if (atn == 2) {
-        autstr = "RED RIGHT GOAL";
+        autstr = "BLUE RING";
         con.print(0, 0, "Aut 2: %s", autstr);
       }
       else if (atn == 3) {
-       autstr = "BLUE LEFT GOAL";
+       autstr = "RED GOAL";
         con.print(0, 0, "Aut 3: %s", autstr);
       }
       else if (atn == 4) {
-       autstr = "BLUE RIGHT RING";
+       autstr = "BLUE GOAL";
         con.print(0, 0, "Aut 4: %s", autstr);
       }
       else if (atn == 5) {
@@ -146,11 +146,11 @@ void competition_initialize() {
         con.print(0, 0, "Aut 6: %s", autstr);
       } 
       else if (atn == 7) {
-        autstr = "BLUE GOAL SAFE";
+        autstr = "RED RIGHT RUSH MIGI";
          con.print(0, 0, "Aut 6: %s", autstr);
        } 
        else if (atn == 8) {
-        autstr = "RED GOAL SAFE";
+        autstr = "RED SAFE RING";
          con.print(0, 0, "Aut 6: %s", autstr);
        } 
       else if (atn == 9) {
@@ -452,28 +452,28 @@ TEST.move(127);
       autstr = "SKILLS";
     }
     if (atn == 1) {
-      autstr = "RED LEFT RING";
+      autstr = "RED RING";
     }
     else if (atn == 2) {
-      autstr = "RED RIGHT GOAL";
+      autstr = "BLUE RING";
     }
     else if (atn == 3) {
-      autstr = "BLUE LEFT MOGO";
+      autstr = "RED GOAL";
     }
     else if (atn == 4) {
-      autstr = "BLUE RIGHT RING";
+      autstr = "BLUE GOAL";
     }
     else if (atn == 5) {
-      autstr = "BLUE RIGHT RING RUSH";
+      autstr = "RED SOLO";
     } 
     else if (atn == 6) {
-      autstr = "RED RIGHT RING RUSH";
+      autstr = "BLUE SOLO";
     }
     else if (atn == 7) {
-      autstr = "BLUE GOAL SAFE";
+      autstr = "RED RIGHT RUSH MOGO";
     }
     else if (atn == 8) {
-      autstr = "RED GOAL SAFE";
+      autstr = "RED SAFE RING";
     }
     else if (atn == 9) {
       atn = 0;
