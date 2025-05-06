@@ -36,8 +36,7 @@ void autonomous() {
 
 
   if (atn == 0) {
-
-
+    imu.tare();
 
     HOOKS.tare_position();    
     LadyBrown.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
@@ -595,6 +594,7 @@ void autonomous() {
     
 
   } else if (atn == 1) {
+  imu.tare();
   ////Red Left Ring
   mogoToggle = true;
   color = 1;
@@ -806,6 +806,7 @@ void autonomous() {
 
 
   } else if (atn == 2) { 
+    imu.tare();
     //blue ring
     mogoToggle = true;
     color = 2;
@@ -996,7 +997,7 @@ void autonomous() {
 
     
   } else if (atn == 3) { 
-
+    imu.tare();
     //mogoToggle = true;
 
 /*
@@ -1143,7 +1144,7 @@ void autonomous() {
     // mogoToggle = true;
 
   } else if(atn == 4) {
-
+    imu.tare();
     
   //start red right rush mogo
   //   mogoToggle = true;
@@ -1333,6 +1334,7 @@ void autonomous() {
 
 
   } else if (atn == 5){
+    imu.tare();
     //red safe solo
     mogoToggle = true;
     color = 1;
@@ -1440,6 +1442,7 @@ void autonomous() {
     // mogoToggle = true;
     
   } else if (atn == 6){
+    imu.tare();
     //blue safe solo
     mogoToggle = true;
     color = 2;
@@ -1538,7 +1541,7 @@ void autonomous() {
     // mogoToggle = true;
 
   } else if (atn == 7){
-
+    imu.tare();
     //blue safe goal
     mogoToggle = true;
     color = 0;
@@ -1620,6 +1623,7 @@ void autonomous() {
 
 
   } else if (atn == 8){
+    imu.tare();
     // red safe goal
     //elims
     /*
