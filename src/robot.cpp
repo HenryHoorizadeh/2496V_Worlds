@@ -1,7 +1,6 @@
 //constructors for everything electrical
 
 #include "api.h"
-//#include "auton.h"
 #include "main.h"
 #include "robot.h"
 #include "pros/motors.h"
@@ -21,11 +20,12 @@
 #define HOOKS_PORT 14
 #define ROTO_PORT 1
 #define ODOMX_PORT 7
-#define ODOMY_PORT 2
+#define ODOMY_PORT 21
 #define TEST_PORT 3
 #define TEST_PORT2 14
 #define LDB_PORT 13
-#define OPTICAL_PORT 3
+#define OPTICAL_PORT 11
+
 
 
 

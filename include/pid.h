@@ -11,10 +11,12 @@ extern void setPosition(float xcoord, float ycoord, float heading);
 extern void resetEncoders();
 extern void setConstants(double kp, double ki, double kd);
 extern void setConstants2(double kp, double ki, double kd);
-extern double calcPID(double target, double input, int integralKi, int maxIntegral, bool slewOn);
+extern double calcPID(double target, double input, int integralKi, int maxIntegral, bool slewOn = false);
 extern double calcPID2(double target, double input, int integralKi, int maxIntegral, bool slewOn);
 extern double calcPIDlift(double target, double input, int integralKi, int maxIntegral, double bias);
 extern void driveStraight(int target);
+extern void driveStraightI(int target, int speed, int dist);
+extern void driveStraightP(int target, int speed, int dist);
 extern void driveStraight2(int target, int speed = 100);
 extern void driveStraightR(int target, int speed = 100);
 extern void driveClamp(int target, int clampDistance, int speed = 100);
@@ -34,6 +36,8 @@ extern void hooks(int speed);
 extern void intake2(int speed);
 extern void stall();
 extern void LadyBrownMacro();
+
+
 
 extern int time2; 
 extern float error;
@@ -87,9 +91,9 @@ extern int LBMacro;
 //tune to make headding correction in arcturns more or less sensitive 
 #define ARC_CORRECTION_KP 10
 
-#define HEADING_KP 8 //5.25//8.75 //15/////////15
+#define HEADING_KP 6 //5.25//8.75 //15/////////15 ///
 #define HEADING_KI 0 //0.125//0.115
-#define HEADING_KD 9000 //38 //105 //70 //100 //180///////////////400
+#define HEADING_KD 6000 //38 //105 //70 //100 //180///////////////400
 
 #define HEADING_KP2 6 //5.25//8.75 //15
 #define HEADING_KI2 0 //0.125//0.115
