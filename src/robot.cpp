@@ -25,8 +25,7 @@
 #define TEST_PORT 3
 #define TEST_PORT2 14
 #define LDB_PORT 13
-#define OPTICAL_PORT 11
-
+#define OPTICAL_PORT 3
 
 
 
