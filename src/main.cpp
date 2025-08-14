@@ -323,6 +323,42 @@ TEST.move(127);
 		} 
     
 
+//start simple macro
+    if(con.get_digital(E_CONTROLLER_DIGITAL_L1)){
+      LadyBrown.move(127);
+      macroControl = false;
+    } else if(con.get_digital(E_CONTROLLER_DIGITAL_L2)){
+      LadyBrown.move(-127);
+      macroControl = false;
+    } else if (macroControl == false){
+      LadyBrown.move(0);
+    }
+
+    if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_UP)){
+      macro++;
+      macroControl = true;
+    }
+
+    if(macroControl){
+      if(macro == 1){
+        setConstants2(1,0,0);
+        calcPIDlift(3000, roto.get_angle(), 0, 0, 5);
+      } else if(macro == 2){
+        setConstants2(1,0,0);
+        calcPIDlift(3000, roto.get_angle(), 0, 0, 5);
+      } else if(macro == 3){
+        setConstants2(1,0,0);
+        calcPIDlift(3000, roto.get_angle(), 0, 0, 5);
+      } else {
+        macro = 1;
+      }
+    }
+//end simple macro
+
+
+
+
+
     if(macroControl){
       
       if(macro == 0){
@@ -589,15 +625,15 @@ TEST.move(127);
 
 
 // //Non Double Press Logic
-    if (con.get_digital(E_CONTROLLER_DIGITAL_R1)) {
-			INTAKE.move(127);
-		} 
-    else if (con.get_digital(E_CONTROLLER_DIGITAL_R2)) {
-			INTAKE.move(-127);
-		} 
-    else {
-			INTAKE.move(0);
-		}
+    // if (con.get_digital(E_CONTROLLER_DIGITAL_R1)) {
+		// 	INTAKE.move(127);
+		// } 
+    // else if (con.get_digital(E_CONTROLLER_DIGITAL_R2)) {
+		// 	INTAKE.move(-127);
+		// } 
+    // else {
+		// 	INTAKE.move(0);
+		// }
 
     // if (con.get_digital(E_CONTROLLER_DIGITAL_L1)) {
 		// 	LadyBrown.move(127);
@@ -623,7 +659,7 @@ TEST.move(127);
       //  driveArcRF(90, 400, 50000);
       //  driveStraight2(10);
       driveTurn2(90);
-      driveStraight2(500);
+     // driveStraight2(500);
      // driveTurn(57);
       //driveTurn2(90);
       // while(true){

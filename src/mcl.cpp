@@ -3,6 +3,7 @@
 #include <cmath>
 #include <algorithm>
 #include <random>
+#include "robot.h"
 
 // ----- Constants and Globals -----
 const int N_PARTICLES = 300;
@@ -81,8 +82,8 @@ void updateParticlesWithMotion() {
     // Read encoders (convert degrees to mm traveled)
     left_enc_deg = drive_left.get_position(); // in degrees
     right_enc_deg = drive_right.get_position(); // in degrees
-    left_enc_mm = left_enc_deg / 360.0 * ( /* wheel circumference mm */ 320.0);
-    right_enc_mm = right_enc_deg / 360.0 * ( /* wheel circumference mm */ 320.0);
+    left_enc_mm = left_enc_deg / 360.0 * (/*gear ratio*/36.0/48.0) * ( /* wheel circumference mm */ 320.0);
+    right_enc_mm = right_enc_deg / 360.0 * (/*gear ratio*/36.0/48.0) * ( /* wheel circumference mm */ 320.0);
     imu_heading = imu.get_rotation(); // in degrees
 
     // Calculate changes
@@ -123,7 +124,7 @@ void updateParticlesWithMotion() {
 // Sensor update: update weights based on distance sensor readings
 void updateParticlesWithSensor() {
     // Read distance sensors
-    int32_t z_left = dist_lkeft.get(); // mm
+    int32_t z_left = dist_left.get(); // mm
     int32_t z_right = dist_right.get(); // mm
     if (z_left < 0) z_left = FIELD_WIDTH; // if out of range, assume max
     if (z_right < 0) z_right = FIELD_WIDTH;
